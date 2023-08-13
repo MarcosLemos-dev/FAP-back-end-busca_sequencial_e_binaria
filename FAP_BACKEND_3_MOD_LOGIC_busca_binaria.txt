@@ -1,0 +1,55 @@
+/*esta seção de codigo abaixo é referente a busca binaria dentro de um array na linguagem javascript*/
+
+var array = [15, 8, 10, 25, 12, 30, 5, 20, 18, 7] // o array tem que estar ordenado
+//[5, 7, 8, 10, 12, 15, 18, 20, 25, 30]
+array.sort(function(a,b){ // função sort nos auxilia a ordenar qualquer array
+    if(a>b){ 
+    return 1;
+    }
+    else if(a<b){ 
+    return -1;
+    }else{
+    return 0;
+    }
+});
+console.log(array);
+var busca_binaria = (array, left, right, valor)=>{  //parametros array ordenado  valor esquerdo e valor direito, valor ha ser buscado
+            if(right >= left){   // verifica se o array esta ordenado. Se o lado direito for maior ou igual ao valor do lado esquerdo
+              indice = parseInt(left + (right-left)/2) // divide o array em 2 ou achar o meio do array : array de 5 posição formula left + (right-left)/2 =   1 + (5-1/2)
+
+              if(array[indice] === valor){ //se o valor do meio do array for igual ao valor  desejado achamos o valor fim do programa
+                return valor
+              }
+              if(array[indice] > valor){ //se o valor do meio do array for maior que o valor devemos voltar uma posição do array pois os valores menores são os do lado esquedo do array <-
+                return busca_binaria(array, left, indice-1, valor)
+              }
+
+              return busca_binaria(array, indice+1, right, valor) // se o valor do meio do array for menor que o valor desejado devemos andar uma posição adiante ->
+            }
+
+            return "não achou"
+}
+
+console.log('o numero que voce procura foi: ',busca_binaria(array, 0, array.length-1, 99));//exemplo de valor fora do array
+console.log('o numero que voce procura no array ; ',busca_binaria(array, 0, array.length-1, 20));//exemplo de valor dentro do array
+
+/* fim da seção de codigo de busca binaria dentro de um arra na linguagem javascript*/
+console.log("******************* separação das buscas***************************************************************")
+/*esta seção de codigo abaixo é referente a busca sequencial dentro de um arra na linguagem javascript*/
+
+var array = [15, 8, 10, 25, 12, 30, 5, 20, 18, 7];
+
+const search = num => { // busca linear de valores dentro do array
+    for (let i = 0; i < array.length; i++) {
+        if (num === array[i]){
+            return i;//retorna a posição do valor que foi encontrado
+            
+        }
+    }
+    return '-1, não esta no array';
+}
+
+console.log('o numero que voce procura no array esta na posição: ',search(20)) //exemplo de valor dentro do array
+console.log('o numero que voce procura no array esta na posição: ',search(99)) //exemplo de valor fora do array
+console.log('fim do codigo')
+/* fim da seção de codigo de busca sequencial dentro de um arra na linguagem javascript*/
